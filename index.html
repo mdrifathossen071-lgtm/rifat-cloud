@@ -316,7 +316,7 @@ function renderFiles(){
    download.textContent="Download";
    download.onclick=()=>downloadFile(file);
   
-actions.append(preview,open,download);
+actions.append(open,download);
 card.append(info,actions);
 list.appendChild(card);
  });
@@ -483,9 +483,8 @@ document.querySelectorAll(".folder").forEach(folder=>{
 });
 
 </script>
+ <script src="https://accounts.google.com/gsi/client" async defer onload="initGoogleAuth()"></script>
 
-<script src="https://accounts.google.com/gsi/client"
-async defer onload="initGoogleAuth()"></script>
 
 </body>
 </html>
