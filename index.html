@@ -302,39 +302,48 @@ function renderFiles(){
    info.append(name,small);
 
    const actions=document.createElement("div");
+actions.className="file-actions";
 
-   const open=document.createElement("button");
-   open.className="btn secondary";
-   open.textContent="Open";
-   open.onclick=()=>{
-     const url=file.webViewLink||"https://drive.google.com/file/d/"+file.id+"/view";
-     window.open(url,"_blank","noopener");
-   };
+const menuBtn=document.createElement("button");
+menuBtn.className="btn secondary";
+menuBtn.textContent="⋮";
+menuBtn.title="More options";
 
-   const download=document.createElement("button");
-   download.className="btn";
-   download.textContent="Download";
-   download.onclick=()=>downloadFile(file);
-  const renameBtn=document.createElement("button");
-renameBtn.className="btn secondary";
-renameBtn.textContent="Rename";
-renameBtn.onclick=()=>renameFile(file);
-  const deleteBtn=document.createElement("button");
-deleteBtn.className="btn disconnect";
-deleteBtn.textContent="Delete";
+const menu=document.createElement("div");
+menu.className="file-menu";
+menu.style.display="none";
 
-deleteBtn.onclick=()=>{
-  deleteFile(file);
-};
-  const preview=document.createElement("button");
-preview.className="btn secondary";
-preview.textContent="Preview";
+function addMenuItem(label,action){
+  const btn=document.createElement("button");
+  btn.textContent=label;
+  btn.className="menu-item";
+  btn.onclick=()=>{
+    menu.style.display="none";
+    action();
+  };
+  menu.appendChild(btn);
+}
 
-preview.onclick=()=>{
-  const url="https://drive.google.com/file/d/"+file.id+"/preview";
+addMenuItem("👁 Preview",()=>{
+  window.open("https://drive.google.com/file/d/"+file.id+"/preview","_blank","noopener");
+});
+
+addMenuItem("📂 Open",()=>{
+  const url=file.webViewLink||"https://drive.google.com/file/d/"+file.id+"/view";
   window.open(url,"_blank","noopener");
+});
+
+addMenuItem("⬇ Download",()=>downloadFile(file));
+
+addMenuItem("✏️ Rename",()=>renameFile(file));
+
+addMenuItem("🗑 Delete",()=>deleteFile(file));
+
+menuBtn.onclick=()=>{
+  menu.style.display=menu.style.display==="none"?"block":"none";
 };
-actions.append(preview,open,download,renameBtn,deleteBtn);
+
+actions.append(menuBtn,menu);
 card.append(info,actions);
 list.appendChild(card);
  });
