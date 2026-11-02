@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rifat Cloud</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #0c0914;
+  color: white;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 245px;
+  background: #151020;
+  padding: 25px 18px;
+  border-right: 1px solid #302442;
+}
+
+.logo {
+  color: #b78aff;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 35px;
+}
+
+.menu {
+  display: block;
+  padding: 14px;
+  margin-bottom: 9px;
+  color: #c8bfd8;
+  text-decoration: none;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.menu:hover,
+.menu.active {
+  background: #39225c;
+  color: white;
+}
+
+.main {
+  flex: 1;
+  padding: 30px;
+  min-width: 0;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 27px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #a99dbb;
+}
+
+.search {
+  background: #1b1527;
+  border: 1px solid #49336a;
+  padding: 13px;
+  color: white;
+  border-radius: 10px;
+  width: 240px;
+  max-width: 100%;
+  outline: none;
+}
+
+.welcome {
+  background: linear-gradient(120deg,#43216f,#211332);
+  padding: 28px;
+  border-radius: 16px;
+  margin-bottom: 28px;
+}
+
+.welcome h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.welcome p {
+  color: #ded1f1;
+}
+
+.section-title {
+  margin: 25px 0 17px;
+}
+
+.folders {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit,minmax(155px,1fr));
+  gap: 16px;
+}
+
+.folder {
+  background: #191326;
+  border: 1px solid #302442;
+  padding: 22px;
+  border-radius: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.folder:hover {
+  transform: translateY(-4px);
+  border-color: #a56aff;
+}
+
+.folder-icon {
+  font-size: 30px;
+  margin-bottom: 14px;
+}
+
+.folder p {
+  color: #a99dbb;
+  font-size: 13px;
+  margin-top: 7px;
+}
+
+.upload {
+  margin-top: 30px;
+  padding: 13px 20px;
+  background: #853ee6;
+  border: none;
+  border-radius: 9px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.upload:hover {
+  background: #a36af0;
+}
+
+#fileInput {
+  display: none;
+}
+
+#fileList {
+  margin-top: 15px;
+  color: #c9b9df;
+  line-height: 2;
+  overflow-wrap: anywhere;
+}
+
+@media(max-width:650px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .logo {
+    margin-bottom: 15px;
+  }
+
+  .menu {
+    display: inline-block;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .main {
+    padding: 19px;
+  }
+
+  h1 {
+    font-size: 23px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+
+    <div class="logo">☁ RIFAT CLOUD</div>
+
+    <a class="menu active" onclick="showSection('dashboard')">🏠 Dashboard</a>
+    <a class="menu" onclick="showSection('documents')">📁 Documents</a>
+    <a class="menu" onclick="showSection('education')">🎓 Education</a>
+    <a class="menu" onclick="showSection('programming')">💻 Programming</a>
+    <a class="menu" onclick="showSection('photos')">🖼️ Photos</a>
+    <a class="menu" onclick="showSection('important')">⭐ Important</a>
+
+  </aside>
+
+  <main class="main">
+
+    <div class="topbar">
+      <div>
+        <h1>My Dashboard</h1>
+        <p class="subtitle">Welcome to your personal cloud.</p>
+      </div>
+
+      <input
+        class="search"
+        id="search"
+        type="search"
+        placeholder="🔍 Search folders..."
+        oninput="searchFolders()"
+      >
+    </div>
+
+    <section class="welcome">
+      <h2>Welcome to Rifat Cloud 👋</h2>
+      <p>Your personal digital space.</p>
+    </section>
+
+    <h3 class="section-title" id="sectionTitle">
+      My Folders
+    </h3>
+
+    <div class="folders" id="folders">
+
+      <div class="folder" data-name="Documents">
+        <div class="folder-icon">📁</div>
+        <h3>Documents</h3>
+        <p>Personal files</p>
+      </div>
+
+      <div class="folder" data-name="Education">
+        <div class="folder-icon">🎓</div>
+        <h3>Education</h3>
+        <p>Study materials</p>
+      </div>
+
+      <div class="folder" data-name="Programming">
+        <div class="folder-icon">💻</div>
+        <h3>Programming</h3>
+        <p>Code and projects</p>
+      </div>
+
+      <div class="folder" data-name="Photos">
+        <div class="folder-icon">🖼️</div>
+        <h3>Photos</h3>
+        <p>Pictures and memories</p>
+      </div>
+
+      <div class="folder" data-name="Videos">
+        <div class="folder-icon">🎬</div>
+        <h3>Videos</h3>
+        <p>Video collection</p>
+      </div>
+
+      <div class="folder" data-name="Important">
+        <div class="folder-icon">⭐</div>
+        <h3>Important</h3>
+        <p>Important files</p>
+      </div>
+
+    </div>
+
+    <button class="upload"
+      onclick="document.getElementById('fileInput').click()">
+      + Select Files
+    </button>
+
+    <input type="file" id="fileInput" multiple>
+
+    <div id="fileList"></div>
+
+  </main>
+
+</div>
+
+<script>
+
+function searchFolders() {
+  const value =
+    document.getElementById("search").value.toLowerCase();
+
+  document.querySelectorAll(".folder").forEach(folder => {
+    folder.style.display =
+      folder.dataset.name.toLowerCase().includes(value)
+      ? "block" : "none";
+  });
+}
+
+function showSection(name) {
+  document.getElementById("sectionTitle").textContent =
+    name === "dashboard"
+    ? "My Folders"
+    : name.charAt(0).toUpperCase() + name.slice(1);
+
+  document.querySelectorAll(".menu").forEach(menu => {
+    menu.classList.remove("active");
+  });
+
+  event.currentTarget.classList.add("active");
+}
+
+document.getElementById("fileInput")
+.addEventListener("change", function() {
+
+  const list = document.getElementById("fileList");
+  list.innerHTML = "<h3>Selected Files</h3>";
+
+  Array.from(this.files).forEach(file => {
+    const item = document.createElement("p");
+    item.textContent = "📄 " + file.name;
+    list.appendChild(item);
+  });
+
+});
+
+</script>
+
+</body>
+</html>
