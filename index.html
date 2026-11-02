@@ -316,9 +316,18 @@ function renderFiles(){
    download.textContent="Download";
    download.onclick=()=>downloadFile(file);
 
-   actions.append(open,download);
-   card.append(info,actions);
-   list.appendChild(card);
+   const preview=document.createElement("button");
+preview.className="btn secondary";
+preview.textContent="Preview";
+
+preview.onclick=()=>{
+  const url="https://drive.google.com/file/d/"+file.id+"/preview";
+  window.open(url,"_blank","noopener");
+};
+
+actions.append(preview,open,download);
+card.append(info,actions);
+list.appendChild(card);
  });
 }
 
