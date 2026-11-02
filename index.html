@@ -315,6 +315,10 @@ function renderFiles(){
    download.className="btn";
    download.textContent="Download";
    download.onclick=()=>downloadFile(file);
+  const renameBtn=document.createElement("button");
+renameBtn.className="btn secondary";
+renameBtn.textContent="Rename";
+renameBtn.onclick=()=>renameFile(file);
   const deleteBtn=document.createElement("button");
 deleteBtn.className="btn disconnect";
 deleteBtn.textContent="Delete";
@@ -330,7 +334,7 @@ preview.onclick=()=>{
   const url="https://drive.google.com/file/d/"+file.id+"/preview";
   window.open(url,"_blank","noopener");
 };
-actions.append(preview,open,download,deleteBtn);
+actions.append(preview,open,download,renameBtn,deleteBtn);
 card.append(info,actions);
 list.appendChild(card);
  });
@@ -432,7 +436,39 @@ async function downloadFile(file){
    message("Download Error: "+error.message);
  }
 }
-async function deleteFile(file){
+async function renameFile(file){
+  const newName=prompt("নতুন ফাইলের নাম লিখুন:",file.name);
+
+  if(newName===null) return;
+
+  const cleanName=newName.trim();
+
+  if(cleanName===""){
+    alert("ফাইলের নাম খালি রাখা যাবে না।");
+    return;
+  }
+
+  if(cleanName===file.name) return;
+
+  try{
+    message("Renaming file...");
+
+    await apiRequest(API+"/files/"+file.id,{
+      method:"PATCH",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({
+        name:cleanName
+      })
+    });
+
+    await loadFiles();
+    message("File renamed successfully!");
+
+  }catch(error){
+    message("Rename Error: "+error.message);
+  }
+}
+ async function deleteFile(file){
   if(!confirm("Are you sure you want to delete "+file.name+"?")){
     return;
   }
