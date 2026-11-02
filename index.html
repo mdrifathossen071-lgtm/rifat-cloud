@@ -121,6 +121,95 @@ h1{font-size:22px}
   }
 }
 
+/* Premium Profile Design */
+.top-actions{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.profile-button{
+  width:52px;
+  height:52px;
+  padding:3px;
+  border-radius:50%;
+  border:2px solid #b879ff;
+  background:#211332;
+  cursor:pointer;
+  box-shadow:0 0 15px #963cff80;
+  overflow:hidden;
+}
+
+.profile-button img{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.profile-settings{
+  max-width:450px;
+  margin:25px auto;
+  padding:22px;
+  background:linear-gradient(145deg,#211632,#151020);
+  border:1px solid #7045a5;
+  border-radius:18px;
+  box-shadow:0 0 25px #8c42d633;
+}
+
+.profile-settings h2{
+  margin-bottom:10px;
+}
+
+.profile-preview{
+  width:110px;
+  height:110px;
+  margin:22px auto;
+  padding:4px;
+  border-radius:50%;
+  border:3px solid #b879ff;
+  box-shadow:0 0 22px #963cff;
+}
+
+.profile-preview img{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+.profile-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:13px;
+  margin:10px 0;
+  background:#292039;
+  border:1px solid #49336a;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.profile-option input{
+  accent-color:#a855f7;
+}
+
+#profileMessage{
+  margin-top:12px;
+  color:#c9a7ff;
+}
+
+@media(max-width:650px){
+  .top-actions{
+    width:100%;
+  }
+
+  .search{
+    flex:1;
+    width:auto;
+  }
+}
+
 </style>
 </head>
 
@@ -146,8 +235,15 @@ h1{font-size:22px}
 <h1>My Dashboard</h1>
 <p class="subtitle">Welcome to your personal cloud.</p>
 </div>
-<input class="search" id="search" type="search" placeholder="🔍 Search files...">
+
+<div class="top-actions">
+  <input class="search" id="search" type="search" placeholder="🔍 Search files...">
+
+  <button class="profile-button" id="profileButton" type="button">
+    <img id="profileAvatar" src="" alt="Profile">
+  </button>
 </div>
+
 
 <section class="welcome">
 <h2>Welcome to Rifat Cloud 👋</h2>
@@ -183,6 +279,14 @@ h1{font-size:22px}
 <div id="fileList"></div>
 </section>
 
+<div class="top-actions">
+  <input class="search" id="search" type="search" placeholder="🔍 Search files...">
+
+  <button class="profile-button" id="profileButton" type="button">
+    <img id="profileAvatar" src="" alt="Profile">
+  </button>
+</div>
+
 </main>
 </div>
 
@@ -199,6 +303,133 @@ let rootFolderId=null;
 let categoryFolders={};
 let activeCategory="dashboard";
 let allFiles=[];
+
+// ===============================
+// PROFILE PICTURE SETTINGS
+// ===============================
+
+const DEFAULT_AVATAR =
+"data:image/svg+xml," +
+encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+<rect width="120" height="120" rx="60" fill="#39225c"/>
+<circle cx="60" cy="43" r="23" fill="#c9a7ff"/>
+<path d="M18 115c2-28 19-42 42-42s40 14 42 42" fill="#c9a7ff"/>
+</svg>
+`);
+
+let customProfileData = localStorage.getItem("rifatCustomProfile") || "";
+let selectedProfileSource =
+localStorage.getItem("rifatProfileSource") || "default";
+
+let googleProfilePicture = "";
+
+function getProfileImage(){
+  if(selectedProfileSource === "custom" && customProfileData){
+    return customProfileData;
+  }
+
+  if(selectedProfileSource === "google" && googleProfilePicture){
+    return googleProfilePicture;
+  }
+
+  return DEFAULT_AVATAR;
+}
+
+function updateProfilePreview(){
+  const image = getProfileImage();
+
+  $("profileAvatar").src = image;
+  $("profilePreview").src = image;
+}
+
+function openProfileSettings(){
+  $("profileSettings").classList.remove("hidden");
+  updateProfilePreview();
+
+  document.querySelectorAll('input[name="profileSource"]').forEach(option=>{
+    option.checked = option.value === selectedProfileSource;
+  });
+}
+
+$("profileButton").onclick = openProfileSettings;
+
+$("closeProfileBtn").onclick = ()=>{
+  $("profileSettings").classList.add("hidden");
+};
+
+document.querySelectorAll('input[name="profileSource"]').forEach(option=>{
+  option.onchange = ()=>{
+    selectedProfileSource = option.value;
+
+    if(option.value === "custom"){
+      $("customProfileInput").click();
+    }
+
+    updateProfilePreview();
+  };
+});
+
+$("customProfileInput").onchange = ()=>{
+  const file = $("customProfileInput").files[0];
+
+  if(!file) return;
+
+  if(!file.type.startsWith("image/")){
+    $("profileMessage").textContent = "Please select an image.";
+    return;
+  }
+
+  if(file.size > 2 * 1024 * 1024){
+    $("profileMessage").textContent = "ছবির সাইজ ২ MB-এর মধ্যে রাখো।";
+    $("customProfileInput").value = "";
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = ()=>{
+    customProfileData = reader.result;
+    selectedProfileSource = "custom";
+
+    document.querySelectorAll('input[name="profileSource"]').forEach(option=>{
+      option.checked = option.value === "custom";
+    });
+
+    updateProfilePreview();
+    $("profileMessage").textContent = "ছবি নির্বাচন করা হয়েছে। Save চাপো।";
+  };
+
+  reader.readAsDataURL(file);
+};
+
+$("saveProfileBtn").onclick = ()=>{
+  try{
+    if(selectedProfileSource === "custom" && !customProfileData){
+      $("profileMessage").textContent = "আগে একটি ছবি নির্বাচন করো।";
+      return;
+    }
+
+    if(selectedProfileSource === "google" && !googleProfilePicture){
+      $("profileMessage").textContent =
+      "Google Profile Picture এখনো পাওয়া যায়নি।";
+      return;
+    }
+
+    localStorage.setItem("rifatProfileSource", selectedProfileSource);
+    localStorage.setItem("rifatCustomProfile", customProfileData);
+
+    updateProfilePreview();
+
+    $("profileMessage").textContent = "Profile saved successfully!";
+  }catch(error){
+    $("profileMessage").textContent =
+    "Save Error: "+error.message;
+  }
+};
+
+// Load saved profile
+updateProfilePreview();
 
 const $=id=>document.getElementById(id);
 
