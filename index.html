@@ -866,7 +866,11 @@ document.querySelectorAll(".folder").forEach(folder=>{
 });
 
 </script>
- <script src="https://accounts.google.com/gsi/client" async defer onload="initGoogleAuth()"></script>
+ <script
+src="https://accounts.google.com/gsi/client"
+onload="initGoogleAuth()"
+onerror="message('Google Login library load failed!')">
+</script>
 
 
 </body>
