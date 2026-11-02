@@ -865,11 +865,24 @@ document.querySelectorAll(".folder").forEach(folder=>{
  folder.onclick=()=>showSection(folder.dataset.category);
 });
 
-</script>
- <script
-src="https://accounts.google.com/gsi/client"
-onload="initGoogleAuth()"
-onerror="message('Google Login library load failed!')">
+<script src="https://accounts.google.com/gsi/client"></script>
+
+<script>
+window.addEventListener("load", function(){
+
+  if(window.google &&
+     google.accounts &&
+     google.accounts.oauth2){
+
+    initGoogleAuth();
+
+  }else{
+
+    message("Google Login library load failed!");
+
+  }
+
+});
 </script>
 
 
