@@ -4,196 +4,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rifat Cloud</title>
+<title>RIFAT CLOUD</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #0c0914;
-  color: white;
-}
-
-.layout {
-  display: flex;
-  min-height: 100vh;
-}
-
-.sidebar {
-  width: 245px;
-  background: #151020;
-  padding: 25px 18px;
-  border-right: 1px solid #302442;
-}
-
-.logo {
-  color: #b78aff;
-  font-size: 25px;
-  font-weight: bold;
-  margin-bottom: 35px;
-}
-
-.menu {
-  display: block;
-  padding: 14px;
-  margin-bottom: 9px;
-  color: #c8bfd8;
-  text-decoration: none;
-  border-radius: 9px;
-  cursor: pointer;
-}
-
-.menu:hover,
-.menu.active {
-  background: #39225c;
-  color: white;
-}
-
-.main {
-  flex: 1;
-  padding: 30px;
-  min-width: 0;
-}
-
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-}
-
-h1 {
-  font-size: 27px;
-  margin-bottom: 8px;
-}
-
-.subtitle {
-  color: #a99dbb;
-}
-
-.search {
-  background: #1b1527;
-  border: 1px solid #49336a;
-  padding: 13px;
-  color: white;
-  border-radius: 10px;
-  width: 240px;
-  max-width: 100%;
-  outline: none;
-}
-
-.welcome {
-  background: linear-gradient(120deg,#43216f,#211332);
-  padding: 28px;
-  border-radius: 16px;
-  margin-bottom: 28px;
-}
-
-.welcome h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-.welcome p {
-  color: #ded1f1;
-}
-
-.section-title {
-  margin: 25px 0 17px;
-}
-
-.folders {
-  display: grid;
-  grid-template-columns:
-    repeat(auto-fit,minmax(155px,1fr));
-  gap: 16px;
-}
-
-.folder {
-  background: #191326;
-  border: 1px solid #302442;
-  padding: 22px;
-  border-radius: 13px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.folder:hover {
-  transform: translateY(-4px);
-  border-color: #a56aff;
-}
-
-.folder-icon {
-  font-size: 30px;
-  margin-bottom: 14px;
-}
-
-.folder p {
-  color: #a99dbb;
-  font-size: 13px;
-  margin-top: 7px;
-}
-
-.upload {
-  margin-top: 30px;
-  padding: 13px 20px;
-  background: #853ee6;
-  border: none;
-  border-radius: 9px;
-  color: white;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.upload:hover {
-  background: #a36af0;
-}
-
-#fileInput {
-  display: none;
-}
-
-#fileList {
-  margin-top: 15px;
-  color: #c9b9df;
-  line-height: 2;
-  overflow-wrap: anywhere;
-}
-
-@media(max-width:650px) {
-  .layout {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    padding: 15px;
-  }
-
-  .logo {
-    margin-bottom: 15px;
-  }
-
-  .menu {
-    display: inline-block;
-    padding: 10px;
-    font-size: 13px;
-  }
-
-  .main {
-    padding: 19px;
-  }
-
-  h1 {
-    font-size: 23px;
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#0c0914;color:white}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:245px;background:#151020;padding:25px 18px;border-right:1px solid #302442;flex-shrink:0}
+.logo{color:#b78aff;font-size:23px;font-weight:bold;margin-bottom:30px}
+.menu{display:block;padding:13px;margin-bottom:8px;color:#c8bfd8;text-decoration:none;border-radius:9px;cursor:pointer}
+.menu:hover,.menu.active{background:#39225c;color:white}
+.main{flex:1;padding:25px;min-width:0}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:25px}
+h1{font-size:26px;margin-bottom:8px}
+.subtitle{color:#a99dbb}
+.search{background:#1b1527;border:1px solid #49336a;padding:13px;color:white;border-radius:10px;width:240px;max-width:100%;outline:none}
+.welcome{background:linear-gradient(120deg,#43216f,#211332);padding:25px;border-radius:16px;margin-bottom:20px}
+.welcome h2{margin-bottom:10px}
+.welcome p{color:#ded1f1}
+.status{background:#191326;border:1px solid #49336a;padding:17px;border-radius:12px;margin-bottom:20px;color:#c9b9df;overflow-wrap:anywhere}
+.btn{padding:12px 17px;border:0;border-radius:9px;color:white;background:#853ee6;cursor:pointer;font-size:14px;margin:4px}
+.btn:hover{background:#a36af0}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.disconnect{background:#a83255}
+.secondary{background:#393044}
+.section-title{margin:24px 0 15px}
+.folders{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:13px}
+.folder{background:#191326;border:1px solid #302442;padding:20px;border-radius:13px;cursor:pointer;transition:.2s}
+.folder:hover{transform:translateY(-3px);border-color:#a56aff}
+.folder-icon{font-size:28px;margin-bottom:12px}
+.folder p{color:#a99dbb;font-size:12px;margin-top:7px}
+.file-card{background:#191326;border:1px solid #302442;border-radius:12px;padding:15px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.file-name{overflow-wrap:anywhere;flex:1;min-width:120px}
+.file-name small{display:block;color:#a99dbb;margin-top:7px;font-size:12px}
+#fileInput{display:none}
+.hidden{display:none!important}
+#message{margin-top:12px;overflow-wrap:anywhere}
+@media(max-width:650px){
+.layout{flex-direction:column}
+.sidebar{width:100%;padding:14px}
+.logo{margin-bottom:13px}
+.menu{display:inline-block;padding:10px;font-size:13px}
+.main{padding:17px}
+h1{font-size:22px}
 }
 </style>
 </head>
@@ -202,123 +55,437 @@ h1 {
 
 <div class="layout">
 
-  <aside class="sidebar">
+<aside class="sidebar">
+<div class="logo">☁ RIFAT CLOUD</div>
+<a class="menu active" data-section="dashboard">🏠 Dashboard</a>
+<a class="menu" data-section="Documents">📁 Documents</a>
+<a class="menu" data-section="Education">🎓 Education</a>
+<a class="menu" data-section="Programming">💻 Programming</a>
+<a class="menu" data-section="Photos">🖼️ Photos</a>
+<a class="menu" data-section="Videos">🎬 Videos</a>
+<a class="menu" data-section="Important">⭐ Important</a>
+</aside>
 
-    <div class="logo">☁ RIFAT CLOUD</div>
+<main class="main">
 
-    <a class="menu active" onclick="showSection('dashboard')">🏠 Dashboard</a>
-    <a class="menu" onclick="showSection('documents')">📁 Documents</a>
-    <a class="menu" onclick="showSection('education')">🎓 Education</a>
-    <a class="menu" onclick="showSection('programming')">💻 Programming</a>
-    <a class="menu" onclick="showSection('photos')">🖼️ Photos</a>
-    <a class="menu" onclick="showSection('important')">⭐ Important</a>
+<div class="topbar">
+<div>
+<h1>My Dashboard</h1>
+<p class="subtitle">Welcome to your personal cloud.</p>
+</div>
+<input class="search" id="search" type="search" placeholder="🔍 Search files...">
+</div>
 
-  </aside>
+<section class="welcome">
+<h2>Welcome to Rifat Cloud 👋</h2>
+<p>Your personal digital space.</p>
+</section>
 
-  <main class="main">
+<section class="status">
+<strong id="connectionStatus">Google Drive: Not Connected</strong>
+<p id="accountInfo" style="margin-top:8px">Connect your Google Account to start.</p>
 
-    <div class="topbar">
-      <div>
-        <h1>My Dashboard</h1>
-        <p class="subtitle">Welcome to your personal cloud.</p>
-      </div>
+<button class="btn" id="connectBtn" disabled>Connect Google Drive</button>
+<button class="btn disconnect hidden" id="disconnectBtn">Disconnect</button>
+<button class="btn secondary hidden" id="refreshBtn">Refresh Files</button>
+<p id="message">Google services loading...</p>
+</section>
 
-      <input
-        class="search"
-        id="search"
-        type="search"
-        placeholder="🔍 Search folders..."
-        oninput="searchFolders()"
-      >
-    </div>
+<h3 class="section-title" id="sectionTitle">My Folders</h3>
 
-    <section class="welcome">
-      <h2>Welcome to Rifat Cloud 👋</h2>
-      <p>Your personal digital space.</p>
-    </section>
+<div class="folders" id="folders">
+<div class="folder" data-category="Documents"><div class="folder-icon">📁</div><h3>Documents</h3><p>Personal files</p></div>
+<div class="folder" data-category="Education"><div class="folder-icon">🎓</div><h3>Education</h3><p>Study materials</p></div>
+<div class="folder" data-category="Programming"><div class="folder-icon">💻</div><h3>Programming</h3><p>Code and projects</p></div>
+<div class="folder" data-category="Photos"><div class="folder-icon">🖼️</div><h3>Photos</h3><p>Pictures and memories</p></div>
+<div class="folder" data-category="Videos"><div class="folder-icon">🎬</div><h3>Videos</h3><p>Video collection</p></div>
+<div class="folder" data-category="Important"><div class="folder-icon">⭐</div><h3>Important</h3><p>Important files</p></div>
+</div>
 
-    <h3 class="section-title" id="sectionTitle">
-      My Folders
-    </h3>
+<section id="fileSection" class="hidden">
+<button class="btn secondary" id="backBtn">← Back to Folders</button>
+<h3 class="section-title" id="fileHeading">Files</h3>
+<button class="btn" id="uploadBtn" disabled>+ Upload Files</button>
+<input type="file" id="fileInput" multiple>
+<div id="fileList"></div>
+</section>
 
-    <div class="folders" id="folders">
-
-      <div class="folder" data-name="Documents">
-        <div class="folder-icon">📁</div>
-        <h3>Documents</h3>
-        <p>Personal files</p>
-      </div>
-
-      <div class="folder" data-name="Education">
-        <div class="folder-icon">🎓</div>
-        <h3>Education</h3>
-        <p>Study materials</p>
-      </div>
-
-      <div class="folder" data-name="Programming">
-        <div class="folder-icon">💻</div>
-        <h3>Programming</h3>
-        <p>Code and projects</p>
-      </div>
-
-      <div class="folder" data-name="Photos">
-        <div class="folder-icon">🖼️</div>
-        <h3>Photos</h3>
-        <p>Pictures and memories</p>
-      </div>
-
-      <div class="folder" data-name="Videos">
-        <div class="folder-icon">🎬</div>
-        <h3>Videos</h3>
-        <p>Video collection</p>
-      </div>
-
-      <div class="folder" data-name="Important">
-        <div class="folder-icon">⭐</div>
-        <h3>Important</h3>
-        <p>Important files</p>
-      </div>
-
-    </div>
-
-    <button class="upload"
-      onclick="document.getElementById('fileInput').click()">
-      + Select Files
-    </button>
-
-    <input type="file" id="fileInput" multiple>
-
-    <div id="fileList"></div>
-
-  </main>
-
+</main>
 </div>
 
 <script>
+const CLIENT_ID="252071753075-b4v1ogl0s967es68b7tu5kfhk9cbhuc7.apps.googleusercontent.com";
+const SCOPE="https://www.googleapis.com/auth/drive.file";
+const API="https://www.googleapis.com/drive/v3";
+const UPLOAD_API="https://www.googleapis.com/upload/drive/v3";
+const CATEGORIES=["Documents","Education","Programming","Photos","Videos","Important"];
 
-function searchFolders() {
-  const value =
-    document.getElementById("search").value.toLowerCase();
+let tokenClient=null;
+let accessToken=null;
+let rootFolderId=null;
+let categoryFolders={};
+let activeCategory="dashboard";
+let allFiles=[];
 
-  document.querySelectorAll(".folder").forEach(folder => {
-    folder.style.display =
-      folder.dataset.name.toLowerCase().includes(value)
-      ? "block" : "none";
-  });
+const $=id=>document.getElementById(id);
+
+function message(text){$("message").textContent=text;}
+
+function initGoogleAuth(){
+ if(!window.google || !google.accounts){
+   message("Google Login library could not load. Internet connection check করুন।");
+   return;
+ }
+
+ tokenClient=google.accounts.oauth2.initTokenClient({
+   client_id:CLIENT_ID,
+   scope:SCOPE,
+   callback:async response=>{
+     if(response.error){
+       message("Google Login Error: "+response.error);
+       return;
+     }
+     accessToken=response.access_token;
+     try{
+       await initializeDrive();
+     }catch(error){
+       message("Drive Error: "+error.message);
+     }
+   }
+ });
+
+ $("connectBtn").disabled=false;
+ message("Google services ready. Connect your Drive.");
 }
 
-function showSection(name) {
-  document.getElementById("sectionTitle").textContent =
-    name === "dashboard"
-    ? "My Folders"
-    : name.charAt(0).toUpperCase() + name.slice(1);
+async function apiRequest(url,options={}){
+ if(!accessToken) throw new Error("Google Drive connect করুন।");
 
-  document.querySelectorAll(".menu").forEach(menu => {
-    menu.classList.remove("active");
-  });
+ const response=await fetch(url,{
+   ...options,
+   headers:{
+     Authorization:"Bearer "+accessToken,
+     ...options.headers
+   }
+ });
 
-  event.currentTarget.classList.add("active");
+ if(!response.ok){
+   const error=await response.json().catch(()=>({}));
+   throw new Error(error.error?.message||"API Error: "+response.status);
+ }
+
+ if(response.status===204)return null;
+ return response.json();
 }
 
-document.getElementById("fileInput")
-.addEventLi
+async function getOrCreateFolder(name,parentId){
+ const q="mimeType='application/vnd.google-apps.folder' and name='"+name+"' and '"+parentId+"' in parents and trashed=false";
+
+ const result=await apiRequest(API+"/files?"+new URLSearchParams({
+   q,
+   fields:"files(id,name)",
+   pageSize:"100"
+ }));
+
+ if(result.files?.length)return result.files[0].id;
+
+ const folder=await apiRequest(API+"/files",{
+   method:"POST",
+   headers:{"Content-Type":"application/json"},
+   body:JSON.stringify({
+     name,
+     mimeType:"application/vnd.google-apps.folder",
+     parents:[parentId]
+   })
+ });
+
+ return folder.id;
+}
+
+async function initializeDrive(){
+ message("Connecting Google Drive...");
+
+ const rootResult=await apiRequest(API+"/files?"+new URLSearchParams({
+   q:"mimeType='application/vnd.google-apps.folder' and name='RIFAT CLOUD' and trashed=false",
+   fields:"files(id,name)",
+   pageSize:"100"
+ }));
+
+ if(rootResult.files?.length){
+   rootFolderId=rootResult.files[0].id;
+ }else{
+   const root=await apiRequest(API+"/files",{
+     method:"POST",
+     headers:{"Content-Type":"application/json"},
+     body:JSON.stringify({
+       name:"RIFAT CLOUD",
+       mimeType:"application/vnd.google-apps.folder"
+     })
+   });
+   rootFolderId=root.id;
+ }
+
+ categoryFolders={};
+
+ for(const category of CATEGORIES){
+   categoryFolders[category]=await getOrCreateFolder(category,rootFolderId);
+ }
+
+ $("connectionStatus").textContent="Google Drive: Connected";
+ $("accountInfo").textContent="Your Google Drive is connected.";
+ $("connectBtn").classList.add("hidden");
+ $("disconnectBtn").classList.remove("hidden");
+ $("refreshBtn").classList.remove("hidden");
+ $("uploadBtn").disabled=false;
+
+ await loadFiles();
+ message("Successfully connected! Your cloud is ready.");
+}
+
+async function loadFiles(){
+ if(!rootFolderId)return;
+
+ message("Loading files...");
+ allFiles=[];
+
+ for(const category of CATEGORIES){
+   const folderId=categoryFolders[category];
+
+   const result=await apiRequest(API+"/files?"+new URLSearchParams({
+     q:"'"+folderId+"' in parents and trashed=false",
+     pageSize:"100",
+     orderBy:"modifiedTime desc",
+     fields:"files(id,name,mimeType,size,modifiedTime,webViewLink)"
+   }));
+
+   (result.files||[]).forEach(file=>{
+     file.category=category;
+     allFiles.push(file);
+   });
+ }
+
+ renderFiles();
+ message("Files loaded: "+allFiles.length);
+}
+
+function renderFiles(){
+ const list=$("fileList");
+ list.innerHTML="";
+
+ let files=allFiles;
+
+ if(activeCategory!=="dashboard"){
+   files=files.filter(f=>f.category===activeCategory);
+ }
+
+ const search=$("search").value.toLowerCase();
+ files=files.filter(f=>f.name.toLowerCase().includes(search));
+
+ if(!files.length){
+   list.textContent="No files found.";
+   return;
+ }
+
+ files.forEach(file=>{
+   const card=document.createElement("div");
+   card.className="file-card";
+
+   const info=document.createElement("div");
+   info.className="file-name";
+
+   const name=document.createElement("strong");
+   name.textContent="📄 "+file.name;
+
+   const small=document.createElement("small");
+   small.textContent=file.category+" • "+(file.size?(Number(file.size)/1024).toFixed(1)+" KB":"Google document");
+
+   info.append(name,small);
+
+   const actions=document.createElement("div");
+
+   const open=document.createElement("button");
+   open.className="btn secondary";
+   open.textContent="Open";
+   open.onclick=()=>{
+     const url=file.webViewLink||"https://drive.google.com/file/d/"+file.id+"/view";
+     window.open(url,"_blank","noopener");
+   };
+
+   const download=document.createElement("button");
+   download.className="btn";
+   download.textContent="Download";
+   download.onclick=()=>downloadFile(file);
+
+   actions.append(open,download);
+   card.append(info,actions);
+   list.appendChild(card);
+ });
+}
+
+async function uploadFile(file){
+ const folderId=categoryFolders[activeCategory];
+ if(!folderId)throw new Error("একটি Category নির্বাচন করুন।");
+
+ const metadata={
+   name:file.name,
+   parents:[folderId]
+ };
+
+ const boundary="RifatCloud"+Date.now();
+
+ const body=new Blob([
+   "--"+boundary+"\r\n"+
+   "Content-Type: application/json; charset=UTF-8\r\n\r\n"+
+   JSON.stringify(metadata)+"\r\n"+
+   "--"+boundary+"\r\n"+
+   "Content-Type: "+(file.type||"application/octet-stream")+"\r\n\r\n",
+   file,
+   "\r\n--"+boundary+"--"
+ ],{type:"multipart/related; boundary="+boundary});
+
+ const response=await fetch(UPLOAD_API+"/files?uploadType=multipart&fields=id,name,mimeType,size,webViewLink",{
+   method:"POST",
+   headers:{
+     Authorization:"Bearer "+accessToken,
+     "Content-Type":"multipart/related; boundary="+boundary
+   },
+   body
+ });
+
+ if(!response.ok){
+   const error=await response.json().catch(()=>({}));
+   throw new Error(error.error?.message||"Upload failed.");
+ }
+
+ return response.json();
+}
+
+async function handleUpload(){
+ const files=Array.from($("fileInput").files);
+ if(!files.length)return;
+
+ try{
+   for(let i=0;i<files.length;i++){
+     message("Uploading "+(i+1)+"/"+files.length+": "+files[i].name);
+     await uploadFile(files[i]);
+   }
+
+   $("fileInput").value="";
+   await loadFiles();
+   message("Upload completed successfully!");
+ }catch(error){
+   message("Upload Error: "+error.message);
+ }
+}
+
+async function downloadFile(file){
+ try{
+   message("Preparing download...");
+
+   let url=API+"/files/"+file.id+"?alt=media";
+   let filename=file.name;
+
+   const exportTypes={
+     "application/vnd.google-apps.document":["application/pdf",".pdf"],
+     "application/vnd.google-apps.spreadsheet":["application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",".xlsx"],
+     "application/vnd.google-apps.presentation":["application/pdf",".pdf"]
+   };
+
+   if(exportTypes[file.mimeType]){
+     const [type,extension]=exportTypes[file.mimeType];
+     url=API+"/files/"+file.id+"/export?mimeType="+encodeURIComponent(type);
+     filename+=extension;
+   }
+
+   const response=await fetch(url,{
+     headers:{Authorization:"Bearer "+accessToken}
+   });
+
+   if(!response.ok)throw new Error("Download failed: "+response.status);
+
+   const blob=await response.blob();
+   const objectUrl=URL.createObjectURL(blob);
+   const link=document.createElement("a");
+
+   link.href=objectUrl;
+   link.download=filename;
+   link.click();
+
+   setTimeout(()=>URL.revokeObjectURL(objectUrl),60000);
+   message("Download started.");
+
+ }catch(error){
+   message("Download Error: "+error.message);
+ }
+}
+
+function showSection(category){
+ activeCategory=category;
+
+ document.querySelectorAll(".menu").forEach(menu=>{
+   menu.classList.toggle("active",menu.dataset.section===category);
+ });
+
+ const dashboard=category==="dashboard";
+
+ $("folders").classList.toggle("hidden",!dashboard);
+ $("fileSection").classList.toggle("hidden",dashboard);
+
+ $("sectionTitle").textContent=dashboard?"My Folders":category;
+ $("fileHeading").textContent=category+" Files";
+
+ if(!dashboard)renderFiles();
+}
+
+$("connectBtn").onclick=()=>{
+ if(!tokenClient){
+   message("Google services loading. Please wait.");
+   return;
+ }
+ tokenClient.requestAccessToken({prompt:"consent"});
+};
+
+$("disconnectBtn").onclick=()=>{
+ if(accessToken){
+   google.accounts.oauth2.revoke(accessToken,()=>{
+     accessToken=null;
+     rootFolderId=null;
+     categoryFolders={};
+     allFiles=[];
+     $("connectionStatus").textContent="Google Drive: Not Connected";
+     $("accountInfo").textContent="Connect your Google Account to start.";
+     $("connectBtn").classList.remove("hidden");
+     $("disconnectBtn").classList.add("hidden");
+     $("refreshBtn").classList.add("hidden");
+     $("uploadBtn").disabled=true;
+     $("fileList").innerHTML="";
+     message("Google Drive disconnected.");
+   });
+ }
+};
+
+$("refreshBtn").onclick=async()=>{
+ try{await loadFiles();}
+ catch(error){message(error.message);}
+};
+
+$("uploadBtn").onclick=()=>$("fileInput").click();
+$("fileInput").onchange=handleUpload;
+$("backBtn").onclick=()=>showSection("dashboard");
+$("search").oninput=()=>{if(activeCategory!=="dashboard")renderFiles();};
+
+document.querySelectorAll(".menu").forEach(menu=>{
+ menu.onclick=()=>showSection(menu.dataset.section);
+});
+
+document.querySelectorAll(".folder").forEach(folder=>{
+ folder.onclick=()=>showSection(folder.dataset.category);
+});
+
+</script>
+
+<script src="https://accounts.google.com/gsi/client"
+async defer onload="initGoogleAuth()"></script>
+
+</body>
+</html>
