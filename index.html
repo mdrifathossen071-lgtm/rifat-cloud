@@ -2085,6 +2085,24 @@ document
 // ==================================
 
 loadGoogleLibrary();
+  function renderFiles() {
+  // তোমার আগের সম্পূর্ণ কোড
+}
+
+// সবশেষে এখানে যোগ করবে
+document.addEventListener("click", event => {
+
+  document.querySelectorAll(".file-menu").forEach(menu => {
+
+    const actions = menu.parentElement;
+
+    if (!actions.contains(event.target)) {
+      menu.style.display = "none";
+    }
+
+  });
+
+});
 
 </script>
 
