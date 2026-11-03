@@ -1414,6 +1414,22 @@ function renderFiles(){
     const card = document.createElement("div");
 
     card.className = "file-card";
+    card.style.cursor = "pointer";
+
+card.onclick = event => {
+
+  // ৩ ডট মেন্যুতে ক্লিক করলে Open হবে না
+  if(event.target.closest(".file-actions")) return;
+
+  const url =
+    file.webViewLink ||
+    "https://drive.google.com/file/d/" +
+    file.id +
+    "/view";
+
+  window.open(url, "_blank", "noopener");
+
+};
 
     const info = document.createElement("div");
 
